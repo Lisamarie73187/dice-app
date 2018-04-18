@@ -1,55 +1,46 @@
-const {Button, ImageView, ui, Composite, device, Picker, TextView, } = require('tabris');
+const {Button, Canvas, TextView, ImageView, Composite, NavigationView, Page,ui} = require('tabris')
 
-const diceArray = [
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Dice-1-b.svg/2000px-Dice-1-b.svg.png',
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Dice-2-b.svg/1024px-Dice-2-b.svg.png',
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Dice-3-b.svg/600px-Dice-3-b.svg.png',
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Dice-5-b.svg/2000px-Dice-5-b.svg.png',
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Dice-6a-b.svg/768px-Dice-6a-b.svg.png',
-]
+const DicePage = require('./pages/DicePage')
 
 
-let rollDice = new Button({
-  centerX: 0, centerY: 300,
-  text: 'Roll the Dice'
-}).appendTo(ui.contentView);
-
-
-let diceOne = new ImageView({
-    left: 100, top: 100, width: 200, height: 200,
-    background: 'white',
-    image: diceArray[Math.floor((Math.random() * Math.floor(4)))],
-    scaleMode: 'fill'
-  }).appendTo(ui.contentView)
-
-let diceTwo = new ImageView({
-  left: 100, top: 'prev() 10', width: 200, height: 200,
-  background: 'white',
-  image: diceArray[Math.floor((Math.random() * Math.floor(4)))],
-  scaleMode: 'fill'
+let navigationView = new NavigationView({
+  left: 0, top: 0, right: 0, bottom: 0,
+  toolbarColor: 'black',
+  titleTextColor: 'white'
 }).appendTo(ui.contentView)
 
+let mainPage = new Page({
+  title: 'BEST DICE ROLLING APP EVER',
+}).appendTo(navigationView)
 
-// rollDice.on('select', ({target}) =>  {
-//   diceOne.image = diceArray[Math.floor((Math.random() * Math.floor(4)))];
-//   diceTwo.image = diceArray[Math.floor((Math.random() * Math.floor(4)))];
-// }).appendTo(ui.contentView);
-
-
-rollDice.on('select', ({target}) =>  {
-  var arr = [500,700,900,1100,1300,1500,1700,1900,2100,2300]
-  for(let i=0; i< arr.length; i++){
-    console.log(arr[i])
-      setTimeout(() => {
-    rollTheDice(target)
-  }, arr[i])
-}}).appendTo(ui.contentView);
+new ImageView({
+  left: -100, top: 0, height: 900, bottom: 100,
+  image: 'https://s3-us-west-1.amazonaws.com/rollthedice/shutterstock_114760342.jpg',
+  scaleMode: 'stretch'
+}).appendTo(mainPage)
 
 
-rollTheDice = (target) => {
-    console.log('fire?')
-    diceOne.image = diceArray[Math.floor((Math.random() * Math.floor(4)))];
-    diceTwo.image = diceArray[Math.floor((Math.random() * Math.floor(4)))];
-}
+const start = new Canvas({
+  left: -80, top: 380, right: 0, bottom: 0
+}).on("resize", ({target: canvas, width, height}) => {
+  let ctx = canvas.getContext("2d", width, height);
+  ctx.moveTo(0, 0);
+  ctx.moveTo(297.5, 262 - 119);
+  ctx.bezierCurveTo(297.5 + (0.5522847498307936 * 296.5), 262 - 119,  297.5 + 296.5, 262 - (0.5522847498307936 * 119), 297.5 + 296.5, 262);
+  ctx.bezierCurveTo(297.5 + 296.5, 262 + (0.5522847498307936 * 119), 297.5 + (0.5522847498307936 * 296.5), 262 + 119, 297.5, 262 + 119);
+  ctx.bezierCurveTo(297.5 - (0.5522847498307936 * 296.5), 262 + 119, 297.5 - 296.5, 262 + (0.5522847498307936 * 119), 297.5 - 296.5, 262);
+  ctx.bezierCurveTo(297.5 - 296.5, 262 - (0.5522847498307936 * 119), 297.5 - (0.5522847498307936 * 296.5), 262 - 119, 297.5, 262 - 119);
+  ctx.fill();
+}).appendTo(mainPage);
 
-// rollDice.on('select', ({target}) => rollTheDice(target)).appendTo(ui.contentView)
+// new Button({
+//   centerX: 0, bottom: 100,
+//   text: 'Start',
+//   background: 'none'
+// })
+start.on('tap', () => {
+  new DicePage().appendTo(navigationView);
+}).appendTo(mainPage)
+
+
+
