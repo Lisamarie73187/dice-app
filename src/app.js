@@ -1,6 +1,7 @@
 const {Button, Canvas, ScrollView, TextView, ImageView, Composite, NavigationView, Page,ui} = require('tabris')
 
 const DicePage = require('./pages/DicePage')
+const DicePageTwenty = require('./pages/DicePageTwenty')
 
 
 let navigationView = new NavigationView({
@@ -33,9 +34,33 @@ let clear = function(){
       duration: 1000,
       easing: 'ease-out'
     });
+    six.animate({
+      transform: {
+        translationY: -240,
+      }
+    }, {
+      duration: 1000,
+      easing: 'ease-out'
+    });
+    twenty.animate({
+      transform: {
+        translationY: -240,
+      }
+    }, {
+      duration: 1000,
+      easing: 'ease-out'
+    });
     startTwo.animate({
       transform: {
         scaleY: 5.5,
+      }
+    }, {
+      duration: 1000,
+      easing: 'ease-out'
+    })
+    choose.animate({
+      transform: {
+        translationY: -240,
       }
     }, {
       duration: 1000,
@@ -55,6 +80,30 @@ let clear = function(){
     startTwo.animate({
       transform: {
         scaleY: 1,
+      }
+    }, {
+      duration: 1000,
+      easing: 'ease-out'
+    })
+    six.animate({
+      transform: {
+        translationY: 10,
+      }
+    }, {
+      duration: 1000,
+      easing: 'ease-out'
+    });
+    twenty.animate({
+      transform: {
+        translationY: 10,
+      }
+    }, {
+      duration: 1000,
+      easing: 'ease-out'
+    });
+    choose.animate({
+      transform: {
+        translationY: 10,
       }
     }, {
       duration: 1000,
@@ -93,7 +142,7 @@ ctx.rect(0, 0, 600, 518);
 
 
 
-new TextView({
+let choose = new TextView({
   left: 0, top: 580, right: 0,
   textColor: 'white',
   alignment: 'center',
@@ -102,12 +151,27 @@ new TextView({
 }).appendTo(mainPage);
 
 
-let dice = new Button({
-  left: 10, top: 10,
-  text: 'Button'
+
+
+let six = new TextView({
+  left: 0, top: 760, right: 40,
+  textColor: 'white',
+  alignment: 'right',
+  text: '6 sided Dice',
+  font: "18px sans-serif"
 }).on('tap', () => {
     new DicePage().appendTo(navigationView);
-   }).appendTo(mainPage);
+  }).appendTo(mainPage);
+
+let twenty = new TextView({
+  left: 40, top: 760, right: 0,
+  textColor: 'white',
+  alignment: 'left',
+  text: '20 sided Dice',
+  font: "18px sans-serif"
+}).on('tap', () => {
+  new DicePageTwenty().appendTo(navigationView);
+}).appendTo(mainPage);
 
 
 
