@@ -1,20 +1,38 @@
 
 const {Button, Page, NavigationPage, ImageView, ui, Composite, device, Picker, TextView, } = require('tabris');
 
-module.exports = class DicePage extends Page {
+module.exports = class DicePageTwenty extends Page {
 constructor() {
- super({title: 'Roll the Dice'});
+ super({title: 'D20'});
 
- const diceArray = [
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Dice-1-b.svg/2000px-Dice-1-b.svg.png',
-   'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Dice-2-b.svg/1024px-Dice-2-b.svg.png',
-   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Dice-3-b.svg/600px-Dice-3-b.svg.png',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Dice-5-b.svg/2000px-Dice-5-b.svg.png',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Dice-6a-b.svg/768px-Dice-6a-b.svg.png',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Dice-4-b.svg/1024px-Dice-4-b.svg.png',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Dice-4-b.svg/1024px-Dice-4-b.svg.png',
- 
+ const diceArrayTwenty = [
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side9.png','https://s3-us-west-1.amazonaws.com/rollthedice/side1.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side2.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/SIDE3.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side4.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side5.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side6.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side7.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side8.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side9.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/SIDE10.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side11.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side12.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side13.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side14.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side15.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side16.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/SIDE17.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side18.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side19.png',
+  'https://s3-us-west-1.amazonaws.com/rollthedice/side20.png'
   ]
+
+  new ImageView({
+    left: -100, top: 0, height: 900, bottom: 0,
+    image: 'https://s3-us-west-1.amazonaws.com/rollthedice/IMG_0808.jpg',
+    scaleMode: 'stretch'
+  }).appendTo(this)
  
  let rollDice = new Button({
    centerX: 0, centerY: 300,
@@ -23,22 +41,13 @@ constructor() {
  
  
  let diceOne = new ImageView({
-     left: 100, top: 100, width: 200, height: 200,
-     background: 'white',
-     image: diceArray[Math.floor((Math.random() * 6))],
+     left: 55, top: 100, width: 300, height: 300,
+     image: diceArrayTwenty[Math.floor((Math.random() * 20))],
      scaleMode: 'fill'
    }).appendTo(this)
  
- let diceTwo = new ImageView({
-   left: 100, top: 'prev() 10', width: 200, height: 200,
-   background: 'white',
-   image: diceArray[Math.floor((Math.random() * 6))],
-   scaleMode: 'fill'
- }).appendTo(this)
- 
- 
  rollDice.on('select', ({target}) =>  {
-   var arr = [500,600,700,800,900,1000,1100,1200,1300,1500,1700,1900,2100,2400,2800,3200]
+   var arr = [500, 1000,1300,1500,1700,1900,2100,2400,2800,3200,3600]
    for(let i=0; i< arr.length; i++){
      console.log(arr[i])
        setTimeout(() => {
@@ -48,8 +57,8 @@ constructor() {
  
  
  let rollTheDice = (target) => {
-     diceOne.image = diceArray[Math.floor((Math.random() * 6))];
-     diceTwo.image = diceArray[Math.floor((Math.random() * 6))];
+   console.log(diceArrayTwenty[Math.floor((Math.random() * 20))])
+     diceOne.image = diceArrayTwenty[Math.floor((Math.random() * 21))];
  }
  
  

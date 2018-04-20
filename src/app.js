@@ -18,7 +18,7 @@ let mainPage = new Page({
 
 new ImageView({
   left: -100, top: 0, height: 900, bottom: 100,
-  image: 'https://s3-us-west-1.amazonaws.com/rollthedice/shutterstock_114760342.jpg',
+  image: 'https://s3-us-west-1.amazonaws.com/rollthedice/IMG_0808.jpg',
   scaleMode: 'stretch'
 }).appendTo(mainPage)
 
@@ -31,7 +31,7 @@ let clear = function(){
         translationY: -240,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     });
     six.animate({
@@ -39,7 +39,7 @@ let clear = function(){
         translationY: -240,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     });
     twenty.animate({
@@ -47,7 +47,7 @@ let clear = function(){
         translationY: -240,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     });
     startTwo.animate({
@@ -55,7 +55,7 @@ let clear = function(){
         scaleY: 5.5,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     })
     choose.animate({
@@ -63,7 +63,7 @@ let clear = function(){
         translationY: -240,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     }).then(() => {
       animation = true
@@ -74,7 +74,7 @@ let clear = function(){
         translationY: 18,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     });
     startTwo.animate({
@@ -82,7 +82,7 @@ let clear = function(){
         scaleY: 1,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     })
     six.animate({
@@ -90,7 +90,7 @@ let clear = function(){
         translationY: 10,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     });
     twenty.animate({
@@ -98,7 +98,7 @@ let clear = function(){
         translationY: 10,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     });
     choose.animate({
@@ -106,7 +106,7 @@ let clear = function(){
         translationY: 10,
       }
     }, {
-      duration: 1000,
+      duration: 500,
       easing: 'ease-out'
     }).then(() => {
       animation = false

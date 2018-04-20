@@ -53,7 +53,6 @@ constructor() {
      diceTwo.image = diceArray[Math.floor((Math.random() * 6))];
  }
  
- 
 
 }} 
 
